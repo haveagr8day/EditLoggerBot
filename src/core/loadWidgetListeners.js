@@ -1,14 +1,26 @@
 const getWidgetHandlerMap = require("./getWidgetHandlerMap");
 
 const runHandlers = (handlers, ...eventArguments) =>
-  handlers.forEach((handler) => handler(...eventArguments));
+    handlers.forEach((handler) => handler(...eventArguments));
 
 module.exports = (client) => {
-  process
+    process
     .on("unhandledRejection", console.error)
     .on("uncaughtException", (error) => {
-      console.error(error);
-      process.exit(1);
+        console.log('Unhandled exception, shutting down')
+        console.error(error);
+        client.destroy();
+        process.exit(1);
+    })
+    .on('SIGINT', function() {
+        console.log('Shutting down');
+        client.destroy();
+        process.exit();
+    })
+    .on('SIGTERM', function() {
+        console.log('Shutting down');
+        client.destroy();
+        process.exit();
     });
 
   const { ready, ...widgetHandlerMap } = getWidgetHandlerMap();
