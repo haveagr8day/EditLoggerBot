@@ -11,16 +11,6 @@ module.exports = (client) => {
         console.error(error);
         client.destroy();
         process.exit(1);
-    })
-    .on('SIGINT', function() {
-        console.log('Shutting down');
-        client.destroy();
-        process.exit();
-    })
-    .on('SIGTERM', function() {
-        console.log('Shutting down');
-        client.destroy();
-        process.exit();
     });
 
   const { ready, ...widgetHandlerMap } = getWidgetHandlerMap();
