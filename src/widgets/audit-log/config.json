@@ -6,7 +6,7 @@
     "neutral": "e67e22",
     "negative": "e91e63"
   },
-  "deleteTimeThreshold": 10,
+  "deleteTimeThreshold": 5,
   "editTimeThreshold": 0,
   "guildChannelMap": {
     "695431329432469514": {

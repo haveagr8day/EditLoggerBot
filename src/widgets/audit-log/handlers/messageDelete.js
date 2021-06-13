@@ -20,6 +20,7 @@ module.exports = async (message, isBulkDelete = false) => {
 
   const time = new Time(message.createdTimestamp);
   if (time.getElapsedTime() < deleteTimeThreshold) {
+    console.log(`Ignoring message deletion less than threshold ${time.getHumanizedElapsedTime()}`)
     return;
   }
 
