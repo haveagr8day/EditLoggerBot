@@ -6,12 +6,12 @@
     "neutral": "e67e22",
     "negative": "e91e63"
   },
-  "deleteTimeThreshold": 1,
+  "deleteTimeThreshold": 10,
   "editTimeThreshold": 0,
   "guildChannelMap": {
-    "258167954913361930": {
-      "logChannelId": "560648403709591552",
-      "ignoreChannelIds": ["649020657522180128"]
+    "695431329432469514": {
+      "logChannelId": "839329958451085332",
+      "ignoreChannelIds": []
     }
   }
 }
