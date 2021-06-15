@@ -11,10 +11,10 @@ client.login(process.env.DISCORD_BOT_TOKEN);
 var now = new Date();
 var millisTill4 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 8, 0, 0, 0) - now;
 if (millisTill4 < 0) {
-    millisTill4 += 86400000; // After 4am, get time to 4am tomorrow
+    millisTill4 += 86400000; // After 8am, get time to 8am tomorrow
 }
 setTimeout(function() {
-    console.log('Automatic 4am shut down')
+    console.log('Automatic 8am UTC shut down')
     client.destroy()
     process.exit()
 }, millisTill4);
