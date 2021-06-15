@@ -33,7 +33,7 @@ module.exports = async (client) => {
                 }
                 last_id = messages.last().id;
 
-                if (messages.size != 100 || sum_messages >= limit) {
+                if (messages.size != 100 || sum_messages.length >= limit) {
                     console.log(`Fetched ${sum_messages.length} messages from ${channel.name} of ${guild.name}`)
                     break;
                 }
