@@ -20,23 +20,29 @@ module.exports = async (client) => {
             const sum_messages = [];
             let last_id;
             
-            while (true) {
-                const options = { limit: 100 };
-                if (last_id) {
-                    options.before = last_id;
-                }
+            if (channel.permissionsFor(client.user).has(['READ_MESSAGE_HISTORY', 'VIEW_CHANNEL'])){
 
-                const messages = await channel.messages.fetch(options);
-                sum_messages.push(...messages.array());
-                if (!messages.last()){
-                    return
-                }
-                last_id = messages.last().id;
+                while (true) {
+                    const options = { limit: 100 };
+                    if (last_id) {
+                        options.before = last_id;
+                    }
 
-                if (messages.size != 100 || sum_messages.length >= limit) {
-                    console.log(`Fetched ${sum_messages.length} messages from ${channel.name} of ${guild.name}`)
-                    break;
+                    const messages = await channel.messages.fetch(options);
+                    sum_messages.push(...messages.array());
+                    if (!messages.last()){
+                        return
+                    }
+                    last_id = messages.last().id;
+
+                    if (messages.size != 100 || sum_messages.length >= limit) {
+                        console.log(`Fetched ${sum_messages.length} messages from ${channel.name} of ${guild.name}`)
+                        break;
+                    }
                 }
+            }
+            else{
+                console.log(`Cannot load messages from ${channel.name} of ${guild.name} due to missing permissions`)
             }
         });
     });
