@@ -9,15 +9,15 @@ client.login(process.env.DISCORD_BOT_TOKEN);
 
 // Auto-shutdown at 8am UTC so Heroku has fewer daytime restarts
 var now = new Date();
-var millisTill4 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 8, 0, 0, 0) - now;
-if (millisTill4 < 0) {
-    millisTill4 += 86400000; // After 8am, get time to 8am tomorrow
+var millisTillRestart = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 8, 0, 0, 0) - now;
+if (millisTillRestart < 0) {
+    millisTillRestart += 86400000; // After 8am, get time to 8am tomorrow
 }
 setTimeout(function() {
     console.log('Automatic 8am UTC shut down')
     client.destroy()
     process.exit()
-}, millisTill4);
+}, millisTillRestart);
 
 process.on('SIGINT', function() {
     console.log('Shutting down');
