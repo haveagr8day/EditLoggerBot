@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@types/diff": "^5.0.0",
+    "diff": "^5.0.0",
     "discord-bot-core-client": "^0.0.4",
     "dotenv": "^10.0.0"
   },
