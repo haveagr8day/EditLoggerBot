@@ -22,6 +22,7 @@ module.exports = async (
 
   const elapsedTime = getElapsedTimeInSeconds(message.createdAt);
   if (elapsedTime < config.deleteTimeThreshold) {
+    console.log(`Ignoring message deletion less than threshold ${humanizeElapsedTime(elapsedTime)}`);
     return;
   }
 
