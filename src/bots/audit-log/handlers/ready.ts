@@ -3,8 +3,14 @@ import configs from "../config.json";
 import { getConfig } from "../util/getConfig";
 import { sendWebhookMessage } from "../util/sendWebhookMessage";
 
+
+let global_client: Client;
+
 module.exports = async (client: Client): Promise<void> => {
   console.log(__dirname.split("\\").slice(-2)[0]);
+  if (!global_client){
+    global_client = client;
+  }
 
   configs
     .map((config) => client.guilds.resolve(config.guildId))
@@ -56,3 +62,26 @@ module.exports = async (client: Client): Promise<void> => {
       });
     });
 };
+
+// Auto-shutdown at 4am so Heroku has less daytime restarts
+let now: Date = new Date();
+let millisTill4: number = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 4, 0, 0, 0).getTime() - now.getTime();
+if (millisTill4 < 0) {
+    millisTill4 += 86400000; // After 4am, get time to 4am tomorrow
+}
+setTimeout(function() {
+    console.log('Automatic 4am shut down')
+    global_client.destroy()
+    process.exit()
+}, millisTill4);
+
+process.on('SIGINT', function() {
+    console.log('Shutting down');
+    global_client.destroy();
+    process.exit();
+});
+process.on('SIGTERM', function() {
+    console.log('Shutting down');
+    global_client.destroy();
+    process.exit();
+});
