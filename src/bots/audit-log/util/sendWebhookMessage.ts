@@ -11,7 +11,7 @@ async function sendWebhookMessage(
   )) as TextChannel;
   const webhooks = (await channel.fetchWebhooks()).filter(hook => hook.token != null);
   const webhook = !webhooks.size
-    ? await channel.createWebhook(guild.client.user?.username || "📢")
+    ? await channel.createWebhook(guild.client.user?.username || "📢", { avatar: "https://i.imgur.com/UlO4Xty.png" })
     : (webhooks.first() as Webhook);
 
   webhook.send(options);
