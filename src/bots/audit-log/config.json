@@ -4,10 +4,21 @@
     "positiveColor": "#3498DB",
     "neutralColor": "#E67E22",
     "negativeColor": "#E91E63",
-    "deleteTimeThreshold": 1,
+    "deleteTimeThreshold": 5,
     "updateTimeThreshold": 0,
-    "guildId": "258167954913361930",
-    "logChannelId": "560648403709591552",
-    "ignoreChannelIds": ["649020657522180128"]
+    "guildId": "695431329432469514",
+    "logChannelId": "839329958451085332",
+    "ignoreChannelIds": []
+  },
+  {
+    "defaultColor": "BLURPLE",
+    "positiveColor": "#3498DB",
+    "neutralColor": "#E67E22",
+    "negativeColor": "#E91E63",
+    "deleteTimeThreshold": 5,
+    "updateTimeThreshold": 0,
+    "guildId": "692022013040001034",
+    "logChannelId": "840052050938953728",
+    "ignoreChannelIds": []
   }
 ]
