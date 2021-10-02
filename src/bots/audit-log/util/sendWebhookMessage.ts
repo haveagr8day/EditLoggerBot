@@ -9,7 +9,7 @@ async function sendWebhookMessage(
   const channel = (await guild.channels.fetch(
     config.logChannelId
   )) as TextChannel;
-  const webhooks = await channel.fetchWebhooks();
+  const webhooks = (await channel.fetchWebhooks()).filter(hook => hook.token != null);
   const webhook = !webhooks.size
     ? await channel.createWebhook(guild.client.user?.username || "📢")
     : (webhooks.first() as Webhook);
